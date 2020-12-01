@@ -1,0 +1,3 @@
+'''
+rtf fame module
+'''
