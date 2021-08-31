@@ -1,5 +1,3 @@
-from io import StringIO
-
 try:
     from oletools import rtfobj
     HAVE_OLETOOLS = True
@@ -25,11 +23,8 @@ class RTF_plugin(ProcessingModule):
     def each_with_type(self, target, file_type):
 
         self.results = dict()
-        content = open(target,'rb').read()
-        fileContent = StringIO(content)
-        rtfdata = fileContent.read()
-        replace_content = rtfdata.replace('datastore', 'objdata')
-        open(target, 'wb').write(replace_content)
+        content = open(target,'rb').read().replace('datastore', 'objdata')
+        open(target, 'wb').write(bytes(content))
         self.results['objects'] = list()
 
         for index, orig_len, data in rtfobj.rtf_iter_objects(target):
