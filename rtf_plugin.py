@@ -1,4 +1,4 @@
-import cStringIO
+from io import StringIO
 
 try:
     from oletools import rtfobj
@@ -26,7 +26,7 @@ class RTF_plugin(ProcessingModule):
 
         self.results = dict()
         content = open(target,'rb').read()
-        fileContent = cStringIO.StringIO(content)
+        fileContent = StringIO.StringIO(content)
         rtfdata = fileContent.read()
         replace_content = rtfdata.replace('datastore', 'objdata')
         open(target, 'wb').write(replace_content)
