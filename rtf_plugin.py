@@ -26,7 +26,7 @@ class RTF_plugin(ProcessingModule):
 
         self.results = dict()
         content = open(target,'rb').read()
-        fileContent = StringIO.StringIO(content)
+        fileContent = StringIO(content)
         rtfdata = fileContent.read()
         replace_content = rtfdata.replace('datastore', 'objdata')
         open(target, 'wb').write(replace_content)
